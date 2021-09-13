@@ -11,6 +11,11 @@ with open(nome_top, 'r') as f:
     A = np.array([[int(num) for num in line.split(',')] for line in f])
 
 #GERA esquema de medição
-gera_plano(A,redun_min)
+E,med_plan = gera_plano(A,redun_min)
 
 #ESCREVE esquema de medição
+num_medidas =  sum(med_plan[:,6])
+with open(f'E{num_barras}b{num_medidas}m.txt','w') as f:
+        np.savetxt(f, E) 
+with open(f'med{num_barras}b{num_medidas}m.txt','w') as f:
+        np.savetxt(f, med_plan,fmt='%i')  

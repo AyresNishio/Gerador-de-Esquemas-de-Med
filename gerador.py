@@ -49,11 +49,8 @@ def gera_plano(A,redun_min):
         G = Ganho(H)
         
     E = Covariância(G,H)
-    with open(f'E{num_barras}b{medidas_adicionadas}m.txt','w') as f:
-        np.savetxt(f, E) 
-    with open(f'med{num_barras}b{medidas_adicionadas}m.txt','w') as f:
-        np.savetxt(f, med_plan,fmt='%i')     
-    
+       
+    return E, med_plan
 
     print('')
 
