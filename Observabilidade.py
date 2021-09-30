@@ -59,6 +59,8 @@ def Covariância(G,H):
     if (teste_observabilidade(G,1.E-10)):
         aux = np.matmul(H,np.linalg.inv(G))
         E= I - np.matmul(aux,np.transpose(H))
+    else :
+        E=np.zeros(H.shape[0])
     return E  
 
 def teste_observabilidade(G,tol):

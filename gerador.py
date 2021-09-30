@@ -29,7 +29,7 @@ def gera_plano(A,redun_min):
     med_plan = gera_plano_vazio(A,num_ramos,num_barras,max_med)
     #Sorteia barra 
     barras_nao_alocadas = [i for i in range(1,num_barras+1)]
-    seed(1)
+    #seed(5)
     barras_sorteadas = sample(barras_nao_alocadas, 1)
     barras_nao_alocadas = [x for x in barras_nao_alocadas if x not in barras_sorteadas]
     medidas_adicionadas = 0
@@ -40,13 +40,14 @@ def gera_plano(A,redun_min):
     fasor=1 #0 indica que há medida fasorial e 1 indica que não há medida fasorial
     H = Jacobiana(A,med_plan,fasor)
     G = Ganho(H)
-    while(not teste_observabilidade(G,1.E-10) and redun<redun_min):
+    while(not teste_observabilidade(G,1.E-10) or redun<redun_min):
         barras_sorteadas = sample(barras_nao_alocadas, 1)
         barras_nao_alocadas = [x for x in barras_nao_alocadas if x not in barras_sorteadas]
         medidas_adicionadas += aloca_medidas(med_plan,barras_sorteadas)
         redun =  medidas_adicionadas/max_med
         H = Jacobiana(A,med_plan,fasor)
         G = Ganho(H)
+        print(teste_observabilidade(G,1.E-10), redun)
         
     E = Covariância(G,H)
        

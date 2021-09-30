@@ -1,7 +1,7 @@
 from gerador import*
 import numpy as np
 
-num_barras = 6
+num_barras = 118
 redun_min = .6
 nome_top = 'A'+str(num_barras) + 'b.txt'
 
